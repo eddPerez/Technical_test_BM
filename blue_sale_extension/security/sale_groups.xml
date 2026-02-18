@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_can_edit_authorization_state" model="res.groups">
+        <field name="name">Insurance Manager</field>
+        <field name="comment">Grants user permission to modify the authorization status in the sales order.</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+</odoo>

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+from odoo import _
 from odoo.models import Model
 from odoo.fields import (Char, Selection, Float)
-from odoo.api import (depends, constrains)
+from odoo.api import (depends, onchange)
 from odoo.exceptions import UserError
 
 
@@ -27,7 +28,7 @@ class SaleOrderLineInherit(Model):
         store=True
     )
 
-    @constrains('total_margin')
+    @onchange('total_margin')
     def _constrains_not_margin_negative(self):
         """
         Valida que el margen total no sea negativo.

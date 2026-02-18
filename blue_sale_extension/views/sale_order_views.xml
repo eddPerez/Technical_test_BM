@@ -7,10 +7,10 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <group name="partner_details" position="inside">
-                    <field name="can_edit_authorization_state" invisible="0"/>
-                    <field name="insurance_number"/>
+                    <field name="can_edit_authorization_state" invisible="1"/>
+                    <field name="insurance_number" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                     <field name="authorization_status"
-                           attrs="{'readonly': [('can_edit_authorization_state', '=', False)]}"/>
+                           attrs="{'readonly': ['|', ('can_edit_authorization_state', '=', False), ('state', '!=', 'draft')]}"/>
                 </group>
 
                 <field name="is_downpayment" position="after">

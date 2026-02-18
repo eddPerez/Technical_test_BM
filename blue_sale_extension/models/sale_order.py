@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from odoo import _
 from odoo.models import Model
 from odoo.fields import (Char, Selection, Boolean)
 from odoo.exceptions import UserError

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from odoo import _
 from odoo.models import Model
 from odoo.fields import (Char, Selection, Float)
 from odoo.api import (depends, onchange)

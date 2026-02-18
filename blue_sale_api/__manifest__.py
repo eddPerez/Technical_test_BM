@@ -2,7 +2,7 @@
 {
     'name': "Sales - API Rest Blue Medical",
     'category': 'Sale',
-    'version': '16.0.0.0',
+    'version': '16.0.0.1',
     'summary': """API REST Blue Medical.""",
     'description': """
         Exposes a REST endpoint in Odoo 16 for creating sales orders from external 

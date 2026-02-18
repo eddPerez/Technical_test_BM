@@ -1,0 +1,95 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* blue_sale_extension
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-18 18:28+0000\n"
+"PO-Revision-Date: 2026-02-18 12:31-0600\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_GT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.6\n"
+
+#. module: blue_sale_extension
+#: model:ir.model.fields.selection,name:blue_sale_extension.selection__sale_order__authorization_status__approved
+msgid "Approved"
+msgstr "Aprobado"
+
+#. module: blue_sale_extension
+#: model:ir.model.fields,field_description:blue_sale_extension.field_sale_order__authorization_status
+msgid "Authorization Status"
+msgstr "Estado de autorización"
+
+#. module: blue_sale_extension
+#: model:ir.model.fields,field_description:blue_sale_extension.field_sale_order__can_edit_authorization_state
+#, fuzzy
+msgid "Can Edit Authorization State"
+msgstr "Puedes cambiar el comportamiento de las barras laterales."
+
+#. module: blue_sale_extension
+#: model:ir.model.fields.selection,name:blue_sale_extension.selection__sale_order__authorization_status__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: blue_sale_extension
+#: model:res.groups,comment:blue_sale_extension.group_can_edit_authorization_state
+msgid ""
+"Grants user permission to modify the authorization status in the sales "
+"order."
+msgstr ""
+"Otorga permiso al usuario para modificar el estado de autorización en la "
+"orden de venta."
+
+#. module: blue_sale_extension
+#: model:res.groups,name:blue_sale_extension.group_can_edit_authorization_state
+msgid "Insurance Manager"
+msgstr "Administrador de Seguros"
+
+#. module: blue_sale_extension
+#: model:ir.model.fields,field_description:blue_sale_extension.field_sale_order__insurance_number
+msgid "Insurance Number"
+msgstr "Número de seguro"
+
+#. module: blue_sale_extension
+#: model:ir.model.fields.selection,name:blue_sale_extension.selection__sale_order__authorization_status__pending
+msgid "Pending"
+msgstr "Pendiente"
+
+#. module: blue_sale_extension
+#: model:ir.model.fields.selection,name:blue_sale_extension.selection__sale_order__authorization_status__rejected
+msgid "Rejected"
+msgstr "Rechazado"
+
+#. module: blue_sale_extension
+#: model:ir.model,name:blue_sale_extension.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: blue_sale_extension
+#: model:ir.model,name:blue_sale_extension.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: blue_sale_extension
+#. odoo-python
+#: code:addons/blue_sale_extension/models/sale_order.py:0
+#, python-format
+msgid ""
+"The order cannot be confirmed if the authorization has not been approved. "
+"Currently the state is %s"
+msgstr ""
+"El pedido no se puede confirmar si la autorización no ha sido aprobada. "
+"El estado actual es %s."
+
+#. module: blue_sale_extension
+#: model:ir.model.fields,field_description:blue_sale_extension.field_sale_order_line__total_margin
+#, fuzzy
+msgid "Total Margin"
+msgstr "Margen Total"

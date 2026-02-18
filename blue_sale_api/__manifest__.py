@@ -2,7 +2,7 @@
 {
     'name': "Sales - API Rest Blue Medical",
     'category': 'Sale',
-    'version': '16.0.0.1',
+    'version': '16.0.0.2',
     'summary': """API REST Blue Medical.""",
     'description': """
         Exposes a REST endpoint in Odoo 16 for creating sales orders from external 
@@ -10,7 +10,7 @@
     """,
     'author': "Edwin Pérez",
     'website': "https://www.linkedin.com/in/edwin-pérez-7ab456229",
-    'depends': ['sale', 'product'],
+    'depends': ['sale', 'product', 'blue_sale_extension'],
     'data': [
 
     ],

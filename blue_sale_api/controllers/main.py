@@ -6,6 +6,23 @@ import json
 
 class SaleOrderAPI(http.Controller):
 
+    def _prepare_sale_values(self, partner, order_lines, data):
+        """
+        Método útil para preparar valores que se utilizarán
+        para crear el pedido de venta.
+        :param partner: recordset Cliente
+        :param order_line: Diccionario con las líneas de venta
+        a asignar al pedido
+        :param data: Información que proviene del cuerpo de la consulta.
+        :return: Diccionario con valores para crear pedido de venta.
+        """
+        return {
+            "partner_id": partner.id,
+            "order_line": order_lines,
+            "insurance_number": data.get("insurance_number"),
+            "authorization_status": 'pending'
+        }
+
     @http.route('/api/v1/sale-order', type='json', auth='none', methods=['POST'], csrf=False)
     def create_sale_order(self, **kwargs):
         """
@@ -24,6 +41,7 @@ class SaleOrderAPI(http.Controller):
         Body (JSON):
             {
                 "partner_id": int,
+                "insurance_number": char,
                 "order_lines": [
                     {
                         "product_id": int,
@@ -49,7 +67,7 @@ class SaleOrderAPI(http.Controller):
                 "status": "pending"
             }
         :param kwargs: Key Args (Body Json para procesar)
-        :return: 
+        :return:
         """
 
         # Validación de token (Bearer Token) (API Key)
@@ -65,7 +83,7 @@ class SaleOrderAPI(http.Controller):
         )
 
         if not user:
-            raise ValidationError ("Error 'API Key' Incorrecta.")
+            raise ValidationError ("Error 'API Key' Incorrecta, valide por favor la clave utilizada para la consulta")
 
         request.update_env(user=user)
 
@@ -73,7 +91,7 @@ class SaleOrderAPI(http.Controller):
         try:
             data = json.loads(request.httprequest.data)
         except Exception:
-            raise ValidationError("JSON body Inválido")
+            raise ValidationError("JSON Body Inválido, no es posible procesarlo")
 
         partner_id = data.get("partner_id")
         order_lines_data = data.get("order_lines", [])
@@ -82,22 +100,23 @@ class SaleOrderAPI(http.Controller):
         partner = request.env['res.partner'].browse(partner_id)
         if not partner.exists():
             return Response(
-                json.dumps({"error": "Customer not found"}),
+                json.dumps({"error": "ID de cliente no fue encontrado en Odoo."}),
                 status=404,
                 content_type='application/json'
             )
 
         # VALIDAR EXISTENCIA DE PRODUCTOS
         if not order_lines_data:
-            raise ValidationError("Sin datos de líneas de ventas")
+            raise ValidationError("No se encontró ninguna línea para la venta, favor de verificar información enviada.")
 
         order_lines = []
 
+        # En caso de recibir más de una línea de pedido
         for line in order_lines_data:
             product = request.env['product.product'].browse(line.get("product_id"))
 
             if not product.exists():
-                raise ValidationError("Producto no encontrado")
+                raise ValidationError("Producto no encontrado, valide de forma correcta el identificador único del producto.")
 
             order_lines.append((0, 0, {
                 "product_id": product.id,
@@ -105,10 +124,7 @@ class SaleOrderAPI(http.Controller):
                 "price_unit": line.get("price_unit", product.lst_price),
             }))
 
-        sale_order = request.env['sale.order'].create({
-            "partner_id": partner.id,
-            "order_line": order_lines,
-        })
+        sale_order = request.env['sale.order'].create(self._prepare_sale_values(partner, order_lines, data))
 
         return {
             "order_id": sale_order.id,
